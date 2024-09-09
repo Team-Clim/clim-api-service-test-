@@ -1,7 +1,7 @@
 package com.teamclim.climapiservice.domain.auth.exception;
 
-import com.teamclim.climapiservice.global.exception.ClimException;
-import com.teamclim.climapiservice.global.exception.ErrorCode;
+import com.teamclim.climapiservice.global.error.exception.ClimException;
+import com.teamclim.climapiservice.global.error.exception.ErrorCode;
 
 public class UserExistException extends ClimException {
     public static final ClimException EXCEPTION = new UserExistException();

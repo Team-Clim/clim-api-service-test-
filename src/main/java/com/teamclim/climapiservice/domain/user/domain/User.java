@@ -1,11 +1,12 @@
 package com.teamclim.climapiservice.domain.user.domain;
 
 import com.teamclim.climapiservice.domain.user.domain.enums.Role;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 @Builder

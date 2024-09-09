@@ -1,4 +1,4 @@
-package com.teamclim.climapiservice.global.exception;
+package com.teamclim.climapiservice.global.error.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
