@@ -44,12 +44,14 @@ public class SecurityConfig {
         //요청에 대한 관한을 설정한다.
         httpSecurity
                 .authorizeHttpRequests((auth)->auth
-                        .requestMatchers("/","/auth","/user","/auth/register","/auth/login","auth/logout").permitAll()
+                        .requestMatchers("/","/auth","/user","/auth/register","/auth/login").permitAll()
                         // 해당 경로에 대한 모든 접근을 허용한다.
                         .requestMatchers("/user/update","/user/delete/","/user/my-info").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         // "/admin"이라는 경로는 역할이 "ADMIN"인 사람만 접근할 수 있다.
                         .anyRequest().authenticated());
+
+
         // 다른 모든 요청은 인증된 사용자만 접근할 수 있다.
 
         //세션 설정

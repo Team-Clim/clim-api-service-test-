@@ -10,6 +10,7 @@ import com.teamclim.climapiservice.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class LoginService {
     private final PasswordEncoder passwordEncoder;
 
 
+    @Transactional
     public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByUserName(request.getUser_name())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);

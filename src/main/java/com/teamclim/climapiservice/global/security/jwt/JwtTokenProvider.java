@@ -68,7 +68,7 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
-    // 토큰에 담겨 있는 userId로 SpringSecurity Authentication 정보를 반환하는 메서드
+    // 토큰에 담겨 있는 userId로 SpringSecurity Authentication 정보를 반환 하는 메서드
     public Authentication getAuthentication(String token) {
         Claims claims = getClaims(token);
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(claims.getSubject());

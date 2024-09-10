@@ -22,7 +22,7 @@ public class RegisterService {
             throw UserExistException.EXCEPTION;
         }
 
-        User user = userRepository.save(
+        userRepository.save(
                 User.builder()
                         .id(request.getId())
                         .user_name(request.getUser_name())
