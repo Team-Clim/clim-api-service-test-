@@ -20,12 +20,12 @@ public class UserController {
 
     @GetMapping("/my-info")
     public MyInfoResponse MyInfoUser() {
-        return myInfoService.Info();
+        return myInfoService.info();
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id) {
-        deleteUserService.deleteUSer(id);
+        deleteUserService.deleteUser(id);
     }
 
     @PatchMapping("/update")

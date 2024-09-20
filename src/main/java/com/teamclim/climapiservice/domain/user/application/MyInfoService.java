@@ -13,12 +13,11 @@ public class MyInfoService {
     private final UserFacade userFacade;
 
     @Transactional(readOnly = true)
-    public MyInfoResponse Info() {
+    public MyInfoResponse info() {
         User user = userFacade.currentUser();
 
         return MyInfoResponse.builder()
                 .user_name(user.getUser_name())
-                .password(user.getPassword())
                 .email(user.getEmail())
                 .build();
 

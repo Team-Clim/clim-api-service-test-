@@ -24,11 +24,9 @@ public class RegisterService {
 
         userRepository.save(
                 User.builder()
-                        .id(request.getId())
                         .user_name(request.getUser_name())
                         .email(request.getEmail())
                         .password(passwordEncoder.encode(request.getPassword()))
-                        .created_at(request.getCreated_at())
                         .build()
         );
     }

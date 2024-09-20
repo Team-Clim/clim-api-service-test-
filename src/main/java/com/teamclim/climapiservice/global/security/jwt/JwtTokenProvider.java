@@ -20,6 +20,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Component
@@ -39,7 +41,7 @@ public class JwtTokenProvider {
                 .setSubject(user_name) //토큰의 소유자
                 .claim("type", "access") //액세스 토큰임을 나타냄
                 .setIssuedAt(now) //토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExpiration() * 1000)) //토큰의 만료 시간 설정
+                .setExpiration(new java.sql.Timestamp(now.getTime() + jwtProperties.getAccessExpiration() * 1000)) //토큰의 만료 시간 설정
                 .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret()) //HS512 알고리즘, 비밀 키를 Jwtproperties에서 가져옴
                 .compact();
 
@@ -52,7 +54,7 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
                 .claim("type", "refresh")  //refresh 토큰임을 나타냄
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + jwtProperties.getRefreshExpiration() * 1000))
+                .setExpiration(new java.sql.Timestamp(now.getTime() + jwtProperties.getRefreshExpiration() * 1000))
                 .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret()) //
                 .compact();
 
@@ -102,8 +104,8 @@ public class JwtTokenProvider {
         return LoginResponse.builder()
                 .accessToken(createAccessToken(user_name))
                 .refreshToken(createRefreshToken(user_name))
-                .accessExpiredAt(new Date(now.getTime() + jwtProperties.getAccessExpiration()))
-                .refreshExpiredAt(new Date(now.getTime() + jwtProperties.getRefreshExpiration()))
+                .accessExpiredAt((jdk.jfr.Timestamp) new Date(now.getTime() + jwtProperties.getAccessExpiration()))
+                .refreshExpiredAt((jdk.jfr.Timestamp) new Date(now.getTime() + jwtProperties.getRefreshExpiration()))
                 .build();
     }
 

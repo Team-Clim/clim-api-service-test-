@@ -16,15 +16,14 @@ public class UpdateMyInfoService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void updateMyInfo(MyInfoRequest myInfoRequest) {
+    public void updateMyInfo(MyInfoRequest request) {
         User user = userFacade.currentUser();
 
-        user.updateMyInfo(
-                myInfoRequest.getUser_name(),
-                passwordEncoder.encode(myInfoRequest.getPassword()),
-                myInfoRequest.getEmail(),
-                myInfoRequest.getUpdated_at()
-        );
+        User.builder()
+                .user_name(request.getUser_name())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .email(request.getEmail())
+                .build();
 
     }
 }

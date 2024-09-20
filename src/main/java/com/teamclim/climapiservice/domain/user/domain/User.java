@@ -36,10 +36,4 @@ public class User {
 
     private Role role;
 
-    public void updateMyInfo(String user_name, String password, String email, Timestamp updated_at) {
-        this.user_name = user_name;
-        this.password = password;
-        this.email = email;
-        this.updated_at = updated_at;
-    }
 }

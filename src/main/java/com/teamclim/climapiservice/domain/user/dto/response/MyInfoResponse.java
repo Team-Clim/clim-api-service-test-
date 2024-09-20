@@ -8,8 +8,6 @@ import lombok.Getter;
 public class MyInfoResponse {
     private String user_name;
 
-    private String password;
-
     private String email;
 
 }

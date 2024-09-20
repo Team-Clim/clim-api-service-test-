@@ -26,18 +26,21 @@ public class GlobalExceptionFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch (ClimException e) {
             ErrorCode errorCode = e.getErrorCode();
-            writerErrorResponse(response, errorCode.getStatusCode(), ErrorResponse.of(errorCode, errorCode.getErrorMessage()));
+            writeErrorResponse(response, errorCode);
+            logger.error("ClimException 발생", e);
         } catch (Exception e) {
             e.printStackTrace();
-            writerErrorResponse(response, response.getStatus(), ErrorResponse.of(response.getStatus(),e.getMessage()));
+            writeErrorResponse(response, ErrorCode.INTERNAL_SERVER_ERROR);
+            logger.error("예상치 못한 예외 발생(레전드 상황 발생)", e);
         }
     }
 
 
-    private void writerErrorResponse(HttpServletResponse response, int statusCode, ErrorResponse errorResponse) throws IOException{
-        response.setStatus(statusCode);
+
+    private void writeErrorResponse(HttpServletResponse response, ErrorCode errorCode) throws IOException {
+        response.setStatus(errorCode.getStatusCode());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        objectMapper.writeValue(response.getWriter(), errorResponse);
-    }
+        objectMapper.writeValue(response.getWriter(), ErrorResponse.of(errorCode, errorCode.getErrorMessage()));
+        }
 }

@@ -1,5 +1,6 @@
 package com.teamclim.climapiservice.domain.auth.dto.response;
 
+import jdk.jfr.Timestamp;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -12,7 +13,7 @@ public class LoginResponse {
 
     private String refreshToken;
 
-    private Date accessExpiredAt;
+    private Timestamp accessExpiredAt;
 
-    private Date refreshExpiredAt;
+    private Timestamp refreshExpiredAt;
 }

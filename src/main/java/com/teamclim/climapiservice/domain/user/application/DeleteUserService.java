@@ -16,7 +16,7 @@ public class DeleteUserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void deleteUSer(Long id) {
+    public void deleteUser(Long id) {
         User user = userFacade.currentUser();
 
         userRepository.deleteById(id);

@@ -21,9 +21,9 @@ public class UserFacade {
             throw new NotAuthenticatedException("인증 되지 않은 유저입니다.");
         }
 
-        String userName = authentication.getName();
+        String user_name = authentication.getName();
 
-        return userRepository.findByUserName(userName)
+        return userRepository.findByUserName(user_name)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
